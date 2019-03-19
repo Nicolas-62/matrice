@@ -3,6 +3,7 @@ public final class MatCar {
 	public int ordre;
 	public Double[][] mat;
 	public double determinant;
+	public int test;
 
 	public MatCar() {
 	}
@@ -15,13 +16,14 @@ public final class MatCar {
 	public MatCar(int unOrdre, Double[][] uneMat) {
 		this.ordre = unOrdre;
 		this.mat = uneMat;
+		this.determinant = this.calculerDet();
 	}
 
 	public double calculerDet() {
 		double val = 0;
-		if (this.ordre == 2) {
+		if (this.ordre == 1) {
 			return this.mat[0][0];
-		} else if (this.ordre > 2) {
+		} else if (this.ordre > 1) {
 			int indiceMatSup = 0;
 			int operateur = 0;
 			// cr�ation des matrices d'ordre inferieur

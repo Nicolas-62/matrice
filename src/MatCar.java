@@ -2,6 +2,7 @@
 public final class MatCar {
 	public int ordre;
 	public Double[][] mat;
+	public double determinant;
 
 	public MatCar() {
 	}
@@ -19,11 +20,11 @@ public final class MatCar {
 	public double calculerDet() {
 		double val = 0;
 		if (this.ordre == 2) {
-			return this.calculerDetMatOrdre2();
+			return this.mat[0][0];
 		} else if (this.ordre > 2) {
 			int indiceMatSup = 0;
 			int operateur = 0;
-			// création des matrices d'ordre inferieur
+			// crï¿½ation des matrices d'ordre inferieur
 			for (int i = 0; i < this.ordre; i++) {
 				MatCar uneMatCar = new MatCar(ordre - 1);
 				// remplissage des lignes
@@ -49,9 +50,4 @@ public final class MatCar {
 		}
 		return val;
 	}
-
-	public double calculerDetMatOrdre2() {
-		return (this.mat[0][0] * this.mat[1][1]) - (this.mat[1][0] * this.mat[0][1]);
-	}
-
 }

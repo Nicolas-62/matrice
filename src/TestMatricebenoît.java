@@ -1,4 +1,4 @@
 
-public class TestMatricebenoît {
+public class TestMatricebenoÃ®t {
 
 }

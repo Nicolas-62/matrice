@@ -1,10 +1,9 @@
 import java.text.DecimalFormat;
 
-public final class MatCar {
+public final class MatCar extends Matrice{
+	
 	public int ordre;
-	public Double[][] mat;
 	public double determinant;
-	public int test;
 	public MatCar matInverse;
 	public MatCar matUnite;
 
@@ -14,22 +13,17 @@ public final class MatCar {
 	public MatCar(int unOrdre) {
 		this.ordre = unOrdre;
 		this.mat = new Double[this.ordre][this.ordre];
+		this.dimension[0] = ordre;
+		// nombre de colonnes de la matrice (on prend la première ligne comme reference)
+		this.dimension[1] = ordre;
 	}
 
-	public MatCar(int unOrdre, Double[][] uneMat) {
-		this.ordre = unOrdre;
+	public MatCar(Double[][] uneMat) {
+		super(uneMat);
+		this.ordre = this.dimension[0];
 		this.mat = uneMat;
 		this.matInverse = null;
 		this.determinant = this.calculerDet();
-		System.out.println(this);
-		try {
-			this.calculerMatriceInverse();
-			System.out.println(this.matInverse);
-			this.calculerMatriceUnite();
-			System.out.println(this.matUnite);
-		} catch (InversibleException e) {
-			e.getMessage();
-		}
 	}
 
 	public double calculerDet() {
@@ -133,21 +127,4 @@ public final class MatCar {
 		this.matUnite = matUnit;
 	}
 
-	public String toString() {
-		DecimalFormat df = new DecimalFormat();
-		df.setMinimumFractionDigits(2);
-		df.setMinimumFractionDigits(2);
-
-		String str = "";
-		str += "ordre : " + this.ordre + "\n";
-		str += "determinant : " + this.determinant + "\n";
-		str += "valeurs : \n";
-		for (int i = 0; i < this.ordre; i++) {
-			for (int j = 0; j < this.ordre; j++) {
-				str += df.format(this.mat[i][j]) + " ";
-			}
-			str += "\n";
-		}
-		return str;
-	}
 }
